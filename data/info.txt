@@ -1,0 +1,13 @@
+House 7 is located in Denver, Colorado. The measurements from this house include:
+
+Water heater performance: Tankless water heater natural gas use, tank-type water heater electricity use, volume and temperature of cold water entering and hot water leaving each water heater, volume of water recirculated by recirculation system
+
+HVAC system performance: Furnace natural gas use, electricity use of the heat pump outdoor unit compressor and fan and air handler unit, temperature of fresh air entering furnace from the heat recovery ventilator (HRV), supply air temperature (SAT) in the plenum, longest and shortest runs in each zone, return air temperature at the filter and the return grille in each zone, temperature and RH at the first and second floor thermostats and in the master bedroom
+
+Electricity consumption: Whole house, lighting and miscellaneous loads (grouped), appliances (grouped)
+
+Photovoltaic array performance: Electricity produced, electricity sold to the grid, incident solar radiation on garage roof
+
+Outdoor environment: Temperature and RH
+
+Other measurements: Whole house natural gas consumption
