@@ -1,6 +1,7 @@
 <!-- TODO:vyplnit nějak -->
-# Project title
-Shared project for SPJ and DIT
+# Fault detection using LSTM NN.
+Shared semestral work for both B3M38DIT1(Diagnostic and Testing and B0M36SPJ (Scientific programming in Julia)
+
 
 ## Project description
 TODO: vyplnit
