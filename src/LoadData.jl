@@ -1,4 +1,5 @@
-# module LoadData
+module LoadData
+
 import CSV
 import DataFrames
 import Plots
@@ -29,3 +30,4 @@ export load_data
 
 # Plots.plot(num_data[1:10,4],num_data[1:10,1],label="test",title="test",xlabel="t",ylabel="y")
 # Plots.plot!(num_data[1:10,4],num_data[1:10,2],label="test2")
+end
