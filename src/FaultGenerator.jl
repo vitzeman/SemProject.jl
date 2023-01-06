@@ -7,12 +7,12 @@ module FaultGenerator
 Generates ofset for data. Returns Vector{Real} with ofsetted data.
 
 # Arguments
-- `data::Vector{Real}`: data to be ofsetted
+- `data::Vector{<:Real}`: data to be ofsetted
 - `starts::Vector{Int}`: starts of offsets
 - `ends::Vector{Int}`: ends of offsets
-- `offset_value::Vector{Real}`: value of offsets
+- `offset_value::Vector{<:Real}`: value of offsets
 """
-function generate_offset(data::Vector{Float64}, starts::Vector{Int}, ends::Vector{Int}, offset_value::Vector{Float64})
+function generate_offset(data::Vector{<:Real}, starts::Vector{Int}, ends::Vector{Int}, offset_value::Vector{<:Real})
     data_with_offset = copy(data)
     if length(starts) != length(ends)
         error("Length of starts, ends and offset_value must be the same.")
@@ -52,8 +52,6 @@ Generates outliers for data at specified locations. Returns Vector{Real} with da
 - `outlier_value::Real`: value of outliers
 """
 function generate_outliers(data::Vector{Real}, location::Vector{Int}, outlier_value::Real)
-    print("Generating outliers..., vector")
-
     data_with_outliers = copy(data)
     # TODO: Check if indexing with vector is possible
     for i in location
@@ -74,7 +72,6 @@ Generates outliers for data at specified locations. Returns Vector{Real} with da
 - `outlier_value::Real`: value of outliers
 """
 function generate_outliers(data::Vector{<:Real}, starts::Vector{<:Int}, ends::Vector{<:Int}, outlier_values::Vector{<:Real})
-    print("Generating outliers..., vector") # TODO: Remove
     if length(starts) != length(ends)
         error("Length of starts and ends must be the same")
     end
