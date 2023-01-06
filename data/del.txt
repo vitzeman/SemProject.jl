@@ -1,0 +1,61 @@
+60      
+Year_RTM       
+Day_RTM        
+Hour_Minute_RTM
+Column5        
+PrgSig
+VBatt
+T_1ST_AVG # 1st floor temperature
+T_2ND_AVG # 2nd floor temperature
+T_1S_AHU_AVG # 1st floor supply air temperature in air handler
+T_1S_MBR_AVG # 1st floor supply air temperature in master bedroom
+T_1S_KIT_AVG # 1st floor supply air temperature in kitchen
+T_1R_MBR_AVG # 1st floor return air temperature in master bedroom
+T_2S_AHU_AVG # 2nd floor supply air temperature in 
+T_2S_LND_AVG # 2nd floor supply air temperature in landing
+T_2S_BTH_AVG # 2nd floor supply air temperature in bathroom
+T_2R_LND_AVG # 2nd floor return air temperature in landing
+T_R_FLT_AVG # return air temperature in air handler
+T_Fresh_AVG # fresh air temperature in air handler
+T_MBR_AVG # master bedroom temperature
+T_INST_I_AVG # instantaneous water heater inlet temperature
+T_INST_H_AVG # instantaneous water heater outlet temperature
+T_DHW_C_AVG # domestic hot water tank cold water temperature
+T_DHW_O_AVG # domestic hot water tank outlet temperature
+RH_1ST_AVG # 1st floor relative humidity
+RH_2ND_AVG # 2nd floor relative humidity
+RH_MBR_AVG # master bedroom relative humidity
+RH_R_FLT_AVG # return air relative humidity in air handler
+T_Out_AVG # outdoor temperature
+RH_Out_AVG # outdoor relative humidity
+I_DHWa_AVG # instantaneous water heater current
+I_DHWb_AVG # instantaneous water heater current
+KWH_AHU_TOT # total energy used by air handler
+KWH_CMP_TOT # total energy used by compressor
+KWH_TANK_TOT # total energy used by domestic hot water tank
+WH_INST_TOT # total energy used by instantaneous water heater
+KWH_LMEL_TOT # total energy used by lighting
+KWH_APPS_TOT # total energy used by appliances
+KWH_PV_P_TOT # total energy produced by PV panels
+KWH_PV_S_TOT # total energy sold by PV panels
+KWH_HOUSE_TOT # total energy used by house
+Q_DWH_FSH_TOT # total energy used by domestic hot water tank
+Q_DHW_REC_TOT # total energy used by domestic hot water tank
+G_HOUSE_TOT # total energy used by house
+G_FURNACE_TOT # total energy used by furnace
+G_INSTDHW_TOT # total energy used by instantaneous water heater
+R_SOLAR_AVG # solar radiation
+HT_1S_AHU # 1st floor supply air temperature in air handler
+HT_1S_MBR # 1st floor supply air temperature in master bedroom
+HT_1S_KIT # 1st floor supply air temperature in kitchen
+HT_1R_MBR # 1st floor return air temperature in master bedroom
+HT_2S_AHU # 2nd floor supply air temperature in air handler
+HT_2S_LND # 2nd floor supply air temperature in landing
+HT_2S_BTH # 2nd floor supply air temperature in bathroom
+HT_2R_LND # 2nd floor return air temperature in landing
+HT_R_FLT # return air temperature in air handler
+HRH_R_FLT # return air relative humidity in air handler
+RT_AHU_AVG # air handler run time
+TE_DHWtnk_TOT # total energy used by domestic hot water tank
+TE_INST_TOT # total energy used by instantaneous water heater
+Column61
