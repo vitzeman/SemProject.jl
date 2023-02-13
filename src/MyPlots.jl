@@ -14,6 +14,7 @@ Plots confusion matrix from predicted and ground truth labels.
 - `labels::Array{String}`: labels of classes
 """
 function plot_confusion_matrix(Pred::Array{Int64,1}, GT::Array{Int64,1},num_lab::Int, labels::Array{String})
+    # TODO: Remove prints
     conf_mtx = zeros(Int, num_lab, num_lab)
     for i in eachindex(Pred)
         print(i)
@@ -31,6 +32,28 @@ function plot_confusion_matrix(Pred::Array{Int64,1}, GT::Array{Int64,1},num_lab:
                 for i in 1:4 for j in 1:4]
     annotate!(ann, linecolor=:black)
 end
+
+"""
+    rectangle(w, h, x, y)
+
+Returns Shape object for rectangle with width w, height h, x and y coordinates of the bottom left corner.
+
+# Arguments
+- `w::Float64`: width of the rectangle
+- `h::Float64`: height of the rectangle
+- `x::Float64`: x coordinate of the bottom left corner
+- `y::Float64`: y coordinate of the bottom left corner
+
+# Returns
+- `Shape`: Shape object for rectangle
+
+# Example
+```julia
+rectangle(0, 0, 3, 4)
+plot(rectangle(0, 0, 3, 4), opacity=.3, color=:blue, label="")
+```
+"""
 rectangle(w, h, x, y) = Shape(x .+ [0,w,w,0], y .+ [0,0,h,h])
+
 
 end # end of module MyPlots

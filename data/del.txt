@@ -28,8 +28,8 @@ RH_MBR_AVG # master bedroom relative humidity
 RH_R_FLT_AVG # return air relative humidity in air handler
 T_Out_AVG # outdoor temperature
 RH_Out_AVG # outdoor relative humidity
-I_DHWa_AVG # instantaneous water heater current
-I_DHWb_AVG # instantaneous water heater current
+I_DHWa_AVG # water heater current
+I_DHWb_AVG # water heater current
 KWH_AHU_TOT # total energy used by air handler
 KWH_CMP_TOT # total energy used by compressor
 KWH_TANK_TOT # total energy used by domestic hot water tank

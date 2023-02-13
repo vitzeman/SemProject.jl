@@ -6,8 +6,8 @@ using JLD
 using .FaultGenerator
 using .LoadData
 using .Conversion
-using .MyPlots
 
+rectangle(w, h, x, y) = Shape(x .+ [0,w,w,0], y .+ [0,0,h,h])
 data = LoadData.load_data(joinpath("data","House_7 - Copy.csv"))
 for (e, name) in enumerate(names(data))
     println(e, "-",name)
@@ -75,8 +75,7 @@ relevant[:,19:34] = energies
 train = copy(relevant[1:12266,:])
 test = copy(relevant[12278:end,:])
 
-t_mbr_cus_train = copy(train[:,13])
-t_mbr_cus_test = copy(test[:,13])
+t_mbr_cus_train = copy(train[:,13]) # TODO: tady mělo být asi 3
 
 Plots.plot(t_mbr_cus_train, label="original", xlabel="t [h]", ylabel="T [K]")
 # Plots.plot!(t_mbr_cus_test, label="original")
@@ -100,7 +99,8 @@ while i<length(t_mbr_cus_train)
         if (i + len) > length(t_mbr_cus_train)
                len = length(t_mbr_cus_train) - i
         end
-        f = FaultGenerator.generate_drift(t_mbr_cus_train, [i],[i+len],rand(Uniform(0.75/120, 1.25/120),1))
+        drift_val = rand(Uniform(0.75/120, 1.25/120),1)*rand([1,-1])
+        f = FaultGenerator.generate_drift(t_mbr_cus_train, [i],[i+len], drift_val)
         y_hat_train[i:i+len] .= 2
         t_mbr_cus_train[i:i+len] = f[i:i+len]
 
@@ -117,12 +117,14 @@ while i<length(t_mbr_cus_train)
         plot!(rectangle(len, 298-287.5,i,287.5), opacity=.3, color=:green, label="")
     elseif fault == 4 # outliers
         # Možná zmenšit rozsah
-        len = rand(24*3:24*7)
+        len = rand(24*1:24*4)
         if (i + len) > length(t_mbr_cus_train)
                len = length(t_mbr_cus_train) - i
         end
-        out_val = rand([rand(Uniform(289, 291)), rand(Uniform(295, 299))])
+        avg = mean(t_mbr_cus_train[i:i+len])
+        out_val = rand([rand(Uniform(avg-30, avg-10)), rand(Uniform(avg+10, avg+30))])
         # print(out_val)
+        
         f = FaultGenerator.generate_outliers(t_mbr_cus_train, [i],[i+len],[out_val]);
         y_hat_train[i:i+len] .= 4
         t_mbr_cus_train[i:i+len] = f[i:i+len]
@@ -135,13 +137,15 @@ X_train[:,13] = t_mbr_cus_train
 plot!(y_hat_train.+280, label="y_hat", color=:black)
 println(num_of_faults_train)
 Plots.plot!(t_mbr_cus_train, label="modified", color=:magenta)
-JLD.save(joinpath("data", "dataset","train", "GT.jld"), "GT", y_hat_train)
-JLD.save(joinpath("data", "dataset","train", "input.jld"), "X", X_train)
+JLD.save(joinpath("data", string("dataset", dataset_num),"train", "GT.jld"), "GT", y_hat_train)
+JLD.save(joinpath("data", string("dataset", dataset_num),"train", "input.jld"), "X", X_train)
 
 # Generate random faults for test data
 i = 1
+t_mbr_cus_test = copy(test[:,13])
 num_of_faults_test = Dict(1 => 0, 2 => 0, 3 => 0, 4 => 0)
 y_hat_test = ones(Int, length(t_mbr_cus_test))
+
 Plots.plot(t_mbr_cus_test, label="original", xlabel="t [h]", ylabel="T [K]")
 # Generate random faults for test data
 while i<length(t_mbr_cus_test)
@@ -157,7 +161,8 @@ while i<length(t_mbr_cus_test)
         if (i + len) > length(t_mbr_cus_test)
                len = length(t_mbr_cus_test) - i
         end
-        f = FaultGenerator.generate_drift(t_mbr_cus_test, [i],[i+len],rand(Uniform(0.75/120, 1.25/120),1))
+        drift_val = rand(Uniform(0.75/120, 1.25/120),1)*rand([1,-1])
+        f = FaultGenerator.generate_drift(t_mbr_cus_test, [i],[i+len], drift_val)
         y_hat_test[i:i+len] .= 2
         t_mbr_cus_test[i:i+len] = f[i:i+len]
 
@@ -174,11 +179,12 @@ while i<length(t_mbr_cus_test)
         plot!(rectangle(len, 298-287.5,i,287.5), opacity=.3, color=:green, label="")
     elseif fault == 4 # outliers
         # Možná zmenšit rozsah
-        len = rand(24*3:24*7)
+        len = rand(24*1:24*4)
         if (i + len) > length(t_mbr_cus_test)
                len = length(t_mbr_cus_test) - i
         end
-        out_val = rand([rand(Uniform(289, 291)), rand(Uniform(295, 299))])
+        avg = mean(t_mbr_cus_train[i:i+len])
+        out_val = rand([rand(Uniform(avg-30, avg-10)), rand(Uniform(avg+10, avg+30))])
         # print(out_val)
         f = FaultGenerator.generate_outliers(t_mbr_cus_test, [i],[i+len],[out_val]);
         y_hat_test[i:i+len] .= 4
@@ -192,6 +198,7 @@ X_test[:,13] = t_mbr_cus_test
 plot!(y_hat_test.+280, label="y_hat", color=:black)
 println(num_of_faults_test)
 Plots.plot!(t_mbr_cus_test, label="modified", color=:magenta)
-JLD.save(joinpath("data", "dataset","test", "GT.jld"), "GT", y_hat_test)
-JLD.save(joinpath("data", "dataset","test", "input.jld"), "X", X_test)
+JLD.save(joinpath("data", string("dataset", dataset_num),"test", "GT.jld"), "GT", y_hat_test)
+JLD.save(joinpath("data", string("dataset", dataset_num),"test", "input.jld"), "X", X_test)
 
+dataset_num +=1
